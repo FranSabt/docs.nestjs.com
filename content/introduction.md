@@ -1,10 +1,17 @@
-### Introduction
+<!-- ### Introduction -->
+### Introduccion
 
-Nest (NestJS) is a framework for building efficient, scalable [Node.js](https://nodejs.org/) server-side applications. It uses progressive JavaScript, is built with and fully supports [TypeScript](http://www.typescriptlang.org/) (yet still enables developers to code in pure JavaScript) and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming).
+<!-- Nest (NestJS) is a framework for building efficient, scalable [Node.js](https://nodejs.org/) server-side applications. It uses progressive JavaScript, is built with and fully supports [TypeScript](http://www.typescriptlang.org/) (yet still enables developers to code in pure JavaScript) and combines elements of OOP (Object Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming). -->
 
-Under the hood, Nest makes use of robust HTTP Server frameworks like [Express](https://expressjs.com/) (the default) and optionally can be configured to use [Fastify](https://github.com/fastify/fastify) as well!
+Nest (NestJS) es un framework para el desarrollo eficiente, escalable [Node.js](https://nodejs.org/) de aplicaciones del lado del servidor. Utiliza "JavaScript Progresivo / Avanzado" (progressive JavaScript), esta contruido y soporta [TypeScript](http://www.typescriptlang.org/) (sin embargo permite a los desarrolladores crear codigo en JavaScript puro) y combina elementos de la "OOP / POO" (Object Oriented Programming / Programacion Orientada a Objetos), "FP / PF" (Functional Programming / Programacion Funcional), y "FRP / PFR" (Functional Reactive Programming / Programacion Funcional Reactiva).
 
-Nest provides a level of abstraction above these common Node.js frameworks (Express/Fastify), but also exposes their APIs directly to the developer. This gives developers the freedom to use the myriad of third-party modules which are available for the underlying platform.
+<!-- Under the hood, Nest makes use of robust HTTP Server frameworks like [Express](https://expressjs.com/) (the default) and optionally can be configured to use [Fastify](https://github.com/fastify/fastify) as well! -->
+
+En el fondo (Under the hood), Nest hace uso de frameworks de Servidor HTTP robustos como [Express](https://expressjs.com/) (por default) y opcionalmente se puede confihurar para usar [Fastify](https://github.com/fastify/fastify) tambien!
+
+<!-- Nest provides a level of abstraction above these common Node.js frameworks (Express/Fastify), but also exposes their APIs directly to the developer. This gives developers the freedom to use the myriad of third-party modules which are available for the underlying platform. -->
+
+Nest provee un nivel de abstraccion sobre todos estos frameworks de Node.js (Express/Fastify), pero tambien expone su API directamente al desarrollador. Esto da a los desarrolladores la libertad para usar los numerosos modulos de terceros que se encuentran disponibles para la plataforma subyacente.
 
 #### Philosophy
 
