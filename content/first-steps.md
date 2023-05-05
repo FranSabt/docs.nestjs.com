@@ -1,18 +1,29 @@
-### First steps
+<!-- ### First steps -->
+### Primeros pasos
 
-In this set of articles, you'll learn the **core fundamentals** of Nest. To get familiar with the essential building blocks of Nest applications, we'll build a basic CRUD application with features that cover a lot of ground at an introductory level.
+<!-- In this set of articles, you'll learn the **core fundamentals** of Nest. To get familiar with the essential building blocks of Nest applications, we'll build a basic CRUD application with features that cover a lot of ground at an introductory level. -->
+En este conjunto de articulos, aprenderas sobre los **fundamentos escenciales** de Nest. Para familiarizarse con los componentes primordiales de las aplicaciones de Nest.
 
-#### Language
+<!-- #### Language -->
+### Lenguaje
 
-We're in love with [TypeScript](https://www.typescriptlang.org/), but above all - we love [Node.js](https://nodejs.org/en/). That's why Nest is compatible with both TypeScript and **pure JavaScript**. Nest takes advantage of the latest language features, so to use it with vanilla JavaScript we need a [Babel](https://babeljs.io/) compiler.
+<!-- We're in love with [TypeScript](https://www.typescriptlang.org/), but above all - we love [Node.js](https://nodejs.org/en/). That's why Nest is compatible with both TypeScript and **pure JavaScript**. Nest takes advantage of the latest language features, so to use it with vanilla JavaScript we need a [Babel](https://babeljs.io/) compiler. -->
 
-We'll mostly use TypeScript in the examples we provide, but you can always **switch the code snippets** to vanilla JavaScript syntax (simply click to toggle the language button in the upper right hand corner of each snippet).
+Nos encanta [TypeScript](https://www.typescriptlang.org/), pero por sobre todo - amamos [Node.js](https://nodejs.org/en/). Es por eso que Nest es compatible con  ambos, TypeScript y  **puro JavaScript**. Nest toma ventaja de las últimas caraterísticas del lenguaje, para poder usar vanilla JavaScript necesitamos del compílador [Babel](https://babeljs.io/).
 
-#### Prerequisites
+<!-- We'll mostly use TypeScript in the examples we provide, but you can always **switch the code snippets** to vanilla JavaScript syntax (simply click to toggle the language button in the upper right hand corner of each snippet). -->
 
-Please make sure that [Node.js](https://nodejs.org) (version >= 12, except for v13) is installed on your operating system.
+En los ejemplos que proveemos hacemos un uso casi exclusivo de TypeScript, pero siempre puedes **intercambiar los fragmentos del código** a sintaxis de vanilla JavaScript (simplemente haciendo click para alternar el lenguaje en el botón en la esquina superior derecha de cada fragmento).  
 
-#### Setup
+<!-- #### Prerequisites -->
+#### Prerequisitos
+
+<!-- Please make sure that [Node.js](https://nodejs.org) (version >= 12, except for v13) is installed on your operating system. -->
+Asegurate de que [Node.js](https://nodejs.org) (versión >= 12, excepto por la v13) esté intalada en tú sistema operativo.
+
+<!-- #### Setup -->
+### Configuración
+
 
 Setting up a new project is quite simple with the [Nest CLI](/cli/overview). With [npm](https://www.npmjs.com/) installed, you can create a new Nest project with the following commands in your OS terminal:
 
