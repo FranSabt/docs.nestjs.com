@@ -98,11 +98,15 @@ async function bootstrap() {
 bootstrap();
 ```
 
-To create a Nest application instance, we use the core `NestFactory` class. `NestFactory` exposes a few static methods that allow creating an application instance. The `create()` method returns an application object, which fulfills the `INestApplication` interface. This object provides a set of methods which are described in the coming chapters. In the `main.ts` example above, we simply start up our HTTP listener, which lets the application await inbound HTTP requests.
+<!-- To create a Nest application instance, we use the core `NestFactory` class. `NestFactory` exposes a few static methods that allow creating an application instance. The `create()` method returns an application object, which fulfills the `INestApplication` interface. This object provides a set of methods which are described in the coming chapters. In the `main.ts` example above, we simply start up our HTTP listener, which lets the application await inbound HTTP requests. -->
 
-Note that a project scaffolded with the Nest CLI creates an initial project structure that encourages developers to follow the convention of keeping each module in its own dedicated directory.
+Para crear una instancia de una aplicacion de Nest, usamos la clase `NestFactory`. `NestFactory` expone unos cuantos metodos estaticos que permiten la creacion de la instancia de la aplicacion. El metodo `create()` retorna un objeto de la aplicacionm la cual cumple con la interfaz 'INestApplication'. Este objeto provee una serie de metodos que seran descritos en los siguientes capitulos. En el `main.ts` del ejemplo de arriba, simplemente iniciamos nuestro HTTP listener, que permite ala aplicacion esperar por peticiones HTTP.
 
-> info **Hint** By default, if any error happens while creating the application your app will exit with the code `1`. If you want to make it throw an error instead disable the option `abortOnError` (e.g., `NestFactory.create(AppModule, {{ '{' }} abortOnError: false {{ '}' }})`).
+<!-- Note that a project scaffolded with the Nest CLI creates an initial project structure that encourages developers to follow the convention of keeping each module in its own dedicated directory. -->
+Notese que un projecto 'scaffolded' con las Nest CLI crea una estructura de proyecto inicial que mmotiva a los desarrollladores a seguir la convencion de mantener cada modulo en su propio directio dedicado. 
+
+<!-- > info **Hint** By default, if any error happens while creating the application your app will exit with the code `1`. If you want to make it throw an error instead disable the option `abortOnError` (e.g., `NestFactory.create(AppModule, {{ '{' }} abortOnError: false {{ '}' }})`). -->
+> info **Pista** Por default, si ocurre cualquier error mientas se esta creado la aplicacion, la misma termina con el codigo `1`. Si en cambio, quieres que lance (throw) un error, desabilita la opcion `abortOnError` (ejem., `NestFactory.create(AppModule, {{ '{' }} abortOnError: false {{ '}' }})`).
 
 <app-banner-courses></app-banner-courses>
 
