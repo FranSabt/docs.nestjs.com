@@ -25,16 +25,22 @@ Asegurate de que [Node.js](https://nodejs.org) (versión >= 12, excepto por la v
 ### Configuración
 
 
-Setting up a new project is quite simple with the [Nest CLI](/cli/overview). With [npm](https://www.npmjs.com/) installed, you can create a new Nest project with the following commands in your OS terminal:
+<!-- Setting up a new project is quite simple with the [Nest CLI](/cli/overview). With [npm](https://www.npmjs.com/) installed, you can create a new Nest project with the following commands in your OS terminal: -->
+Configurar un nuevo proyecto es realmente simple con la [Nest CLI](/cli/overview). Con [npm](https://www.npmjs.com/) instalado, puedes cear un nuevo proyecto de Nest con los siguientes comando en la terminal de tu OS:
+
 
 ```bash
 $ npm i -g @nestjs/cli
 $ nest new project-name
 ```
 
-> info **Hint** To create a new project with TypeScript's [strict](https://www.typescriptlang.org/tsconfig#strict) mode enabled, pass the `--strict` flag to the `nest new` command. 
+<!-- > info **Hint** To create a new project with TypeScript's [strict](https://www.typescriptlang.org/tsconfig#strict) mode enabled, pass the `--strict` flag to the `nest new` command.  -->
 
-The `project-name` directory will be created, node modules and a few other boilerplate files will be installed, and a `src/` directory will be created and populated with several core files.
+> info **Pista** para crear u nuevo proyecto con TypeScript's [strict](https://www.typescriptlang.org/tsconfig#strict) modo activo, usa la `--strict` flag en el comando `nest new`.
+
+
+<!-- The `project-name` directory will be created, node modules and a few other boilerplate files will be installed, and a `src/` directory will be created and populated with several core files. -->
+El directorio del `nombre-del-proyecto` serra creado, los modulos de node y otros archivos que contienen plantillas seran instalados, y en el directorio `src/` se creara y se llenara con alfunos archivos escenciales.
 
 <div class="file-tree">
   <div class="item">src</div>
@@ -47,9 +53,10 @@ The `project-name` directory will be created, node modules and a few other boile
   </div>
 </div>
 
-Here's a brief overview of those core files:
+<!-- Here's a brief overview of those core files: -->
+Aquí hay una breve descripción de los archivos principales:
 
-|                          |                                                                                                                     |
+<!-- |                          |                                                                                                                     |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------- |
 | `app.controller.ts`      | A basic controller with a single route.                                                                             |
 | `app.controller.spec.ts` | The unit tests for the controller.                                                                                  |
@@ -57,7 +64,17 @@ Here's a brief overview of those core files:
 | `app.service.ts`         | A basic service with a single method.                                                                               |
 | `main.ts`                | The entry file of the application which uses the core function `NestFactory` to create a Nest application instance. |
 
-The `main.ts` includes an async function, which will **bootstrap** our application:
+The `main.ts` includes an async function, which will **bootstrap** our application: -->
+
+|                          |                                                                                                                     |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| `app.controller.ts`      | Un controlador basico con una sola ruta.                                                                             |
+| `app.controller.spec.ts` | Los test unitario para ese controlador.                                                                                  |
+| `app.module.ts`          | El modulo raiz para la aplciacion.                                                                                 |
+| `app.service.ts`         | Un servicio basico con un solo metodo.                                                                               |
+| `main.ts`                | El archivo de entrada de la aplicacion que usa la funcion escencial (core function `NestFactory` para crear ina instancia de la aplicacion de Nest. |)
+
+El archivo `main.ts` incluye una funcion asincrona, la cual  **envuelve / bootstrap** nuestra aplicacion:
 
 ```typescript
 @@filename(main)
