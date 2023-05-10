@@ -110,9 +110,12 @@ Notese que un projecto 'scaffolded' con las Nest CLI crea una estructura de proy
 
 <app-banner-courses></app-banner-courses>
 
-#### Platform
+<!-- #### Platform -->
+#### Platforma
 
-Nest aims to be a platform-agnostic framework. Platform independence makes it possible to create reusable logical parts that developers can take advantage of across several different types of applications. Technically, Nest is able to work with any Node HTTP framework once an adapter is created. There are two HTTP platforms supported out-of-the-box: [express](https://expressjs.com/) and [fastify](https://www.fastify.io). You can choose the one that best suits your needs.
+<!-- Nest aims to be a platform-agnostic framework. Platform independence makes it possible to create reusable logical parts that developers can take advantage of across several different types of applications. Technically, Nest is able to work with any Node HTTP framework once an adapter is created. There are two HTTP platforms supported out-of-the-box: [express](https://expressjs.com/) and [fastify](https://www.fastify.io). You can choose the one that best suits your needs. -->
+Nest apunta a ser un framework independiente de las plataformas. La independecia de las plataformas hace posible el crear logica reusable de la cual, los desarrolladores pueden tomar ventaja a traves de diferentes tipos de aplicaciones. Tecnincamente, Nest es capas de trabajar con cualquier framework HTTP de Node una vez que el adaptador es creado. Hay dos plataformas compatibles y listas para usar:  [express](https://expressjs.com/) y [fastify](https://www.fastify.io). Puedes escoger la que mejor se adapte a tus necesidades.
+
 
 |                    |                                                                                                                                                                                                                                                                                                                                    |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
