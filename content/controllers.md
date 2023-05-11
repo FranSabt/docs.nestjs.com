@@ -1,18 +1,30 @@
-### Controllers
+<!-- ### Controllers -->
+### Controladores
 
-Controllers are responsible for handling incoming **requests** and returning **responses** to the client.
+<!-- Controllers are responsible for handling incoming **requests** and returning **responses** to the client. -->
+Los controladores son responsables de manejar las **solicitudes** entrantes y devolver **respuestas** al cliente.
 
 <figure><img src="/assets/Controllers_1.png" /></figure>
 
-A controller's purpose is to receive specific requests for the application. The **routing** mechanism controls which controller receives which requests. Frequently, each controller has more than one route, and different routes can perform different actions.
+<!-- A controller's purpose is to receive specific requests for the application. The **routing** mechanism controls which controller receives which requests. Frequently, each controller has more than one route, and different routes can perform different actions. -->
+El propósito de un controlador es recibir solicitudes específicas para la aplicación. El mecanismo **routing** controla qué controlador recibe qué solicitudes. Con frecuencia, cada controlador tiene más de una ruta y diferentes rutas pueden realizar diferentes acciones.
 
-In order to create a basic controller, we use classes and **decorators**. Decorators associate classes with required metadata and enable Nest to create a routing map (tie requests to the corresponding controllers).
 
-> info **Hint** For quickly creating a CRUD controller with the [validation](https://docs.nestjs.com/techniques/validation) built-in, you may use the CLI's [CRUD generator](https://docs.nestjs.com/recipes/crud-generator#crud-generator): `nest g resource [name]`.
+<!-- In order to create a basic controller, we use classes and **decorators**. Decorators associate classes with required metadata and enable Nest to create a routing map (tie requests to the corresponding controllers). -->
+Para crear un controlador básico, usamos clases y **decoradores (decorators)**. Los decoradores asocian clases con los metadatos necesarios y permiten a Nest crear un mapa de enrutamiento (vincular las solicitudes a los controladores correspondientes).
 
-#### Routing
 
-In the following example we'll use the `@Controller()` decorator, which is **required** to define a basic controller. We'll specify an optional route path prefix of `cats`. Using a path prefix in a `@Controller()` decorator allows us to easily group a set of related routes, and minimize repetitive code. For example, we may choose to group a set of routes that manage interactions with a cat entity under the route `/cats`. In that case, we could specify the path prefix `cats` in the `@Controller()` decorator so that we don't have to repeat that portion of the path for each route in the file.
+<!-- > info **Hint** For quickly creating a CRUD controller with the [validation](https://docs.nestjs.com/techniques/validation) built-in, you may use the CLI's [CRUD generator](https://docs.nestjs.com/recipes/crud-generator#crud-generator): `nest g resource [name]`. -->
+
+> info **Sugerencia** Para crear rápidamente un controlador CRUD con la [validación](https://docs.nestjs.com/techniques/validation) incorporada, puede usar el  [CRUD generator](https://docs.nestjs.com/recipes/crud-generator#crud-generator): `nest g resource [name]`.
+
+<!-- #### Routing -->
+#### Ruteo/Routing
+
+<!-- In the following example we'll use the `@Controller()` decorator, which is **required** to define a basic controller. We'll specify an optional route path prefix of `cats`. Using a path prefix in a `@Controller()` decorator allows us to easily group a set of related routes, and minimize repetitive code. For example, we may choose to group a set of routes that manage interactions with a cat entity under the route `/cats`. In that case, we could specify the path prefix `cats` in the `@Controller()` decorator so that we don't have to repeat that portion of the path for each route in the file. -->
+
+En el siguiente ejemplo usaremos el decorador `@Controller()`, que es **requerido** para definir un controlador básico. Especificaremos un prefijo de ruta de ruta opcional de `cats`. El uso de un prefijo de ruta en un decorador `@Controller()` nos permite agrupar fácilmente un conjunto de rutas relacionadas y minimizar el código repetitivo. Por ejemplo, podemos optar por agrupar un conjunto de rutas que gestionan las interacciones con una entidad de gato bajo la ruta `/cats`. En ese caso, podríamos especificar el prefijo de ruta `cats` en el decorador `@Controller()` para que no tengamos que repetir esa parte de la ruta para cada ruta en el archivo.
+
 
 ```typescript
 @@filename(cats.controller)
@@ -37,13 +49,19 @@ export class CatsController {
 }
 ```
 
-> info **Hint** To create a controller using the CLI, simply execute the `$ nest g controller cats` command.
+<!-- > info **Hint** To create a controller using the CLI, simply execute the `$ nest g controller cats` command. -->
 
-The `@Get()` HTTP request method decorator before the `findAll()` method tells Nest to create a handler for a specific endpoint for HTTP requests. The endpoint corresponds to the HTTP request method (GET in this case) and the route path. What is the route path? The route path for a handler is determined by concatenating the (optional) prefix declared for the controller, and any path specified in the method's decorator. Since we've declared a prefix for every route ( `cats`), and haven't added any path information in the decorator, Nest will map `GET /cats` requests to this handler. As mentioned, the path includes both the optional controller path prefix **and** any path string declared in the request method decorator. For example, a path prefix of `cats` combined with the decorator `@Get('breed')` would produce a route mapping for requests like `GET /cats/breed`.
+> info **Sugerencia** Para crear un controlador usando la CLI, simplemente ejecute el comando `$ nest g controller cats`.
 
-In our example above, when a GET request is made to this endpoint, Nest routes the request to our user-defined `findAll()` method. Note that the method name we choose here is completely arbitrary. We obviously must declare a method to bind the route to, but Nest doesn't attach any significance to the method name chosen.
+<!-- The `@Get()` HTTP request method decorator before the `findAll()` method tells Nest to create a handler for a specific endpoint for HTTP requests. The endpoint corresponds to the HTTP request method (GET in this case) and the route path. What is the route path? The route path for a handler is determined by concatenating the (optional) prefix declared for the controller, and any path specified in the method's decorator. Since we've declared a prefix for every route ( `cats`), and haven't added any path information in the decorator, Nest will map `GET /cats` requests to this handler. As mentioned, the path includes both the optional controller path prefix **and** any path string declared in the request method decorator. For example, a path prefix of `cats` combined with the decorator `@Get('breed')` would produce a route mapping for requests like `GET /cats/breed`. -->
 
-This method will return a 200 status code and the associated response, which in this case is just a string. Why does that happen? To explain, we'll first introduce the concept that Nest employs two **different** options for manipulating responses:
+El decorador del método de solicitud HTTP  `@Get()` antes del método `findAll()` indica a Nest que cree un controlador para un punto de enlace específico para las solicitudes HTTP. El punto final corresponde al método de solicitud HTTP (GET en este caso) y el camino de  la ruta (route path). ¿Cuál es camino de  la ruta? Para un controlador se determina concatenando el prefijo (opcional) declarado para el controlador y cualquier ruta especificada en el decorador del método. Como hemos declarado un prefijo para cada ruta ( `cats`) y no hemos agregado ninguna información de ruta en el decorador, Nest asignará las solicitudes `GET /cats` a este controlador. Como se mencionó, la ruta incluye tanto el prefijo opcional de ruta del controlador **como** cualquier cadena de ruta declarada en el decorador del método de solicitud. Por ejemplo, un prefijo de ruta de `cats` combinado con el decorador `@Get('breed')` produciría un mapeo de ruta para solicitudes como `GET /cats/breed`.
+
+<!-- In our example above, when a GET request is made to this endpoint, Nest routes the request to our user-defined `findAll()` method. Note that the method name we choose here is completely arbitrary. We obviously must declare a method to bind the route to, but Nest doesn't attach any significance to the method name chosen. -->
+En nuestro ejemplo anterior, cuando se realiza una solicitud GET a este punto final, Nest enruta la solicitud a nuestro método `findAll()` definido por el usuario. Tenga en cuenta que el nombre del método que elegimos aquí es completamente arbitrario. Obviamente debemos declarar un método para enlazar la ruta, pero Nest no le da ningún significado al nombre del método elegido.
+
+<!-- This method will return a 200 status code and the associated response, which in this case is just a string. Why does that happen? To explain, we'll first introduce the concept that Nest employs two **different** options for manipulating responses: -->
+Este método devolverá un status code 200 y la respuesta asociada, que en este caso es solo una cadena. ¿Por qué sucede eso? Para explicarlo, primero presentaremos el concepto de que Nest emplea dos opciones **diferentes** para manipular las respuestas:
 
 <table>
   <tr>
@@ -55,6 +73,27 @@ This method will return a 200 status code and the associated response, which in 
       <br /> Furthermore, the response's <strong>status code</strong> is always 200 by default, except for POST
       requests which use 201. We can easily change this behavior by adding the <code>@HttpCode(...)</code>
       decorator at a handler-level (see <a href='controllers#status-code'>Status codes</a>).
+    </td>
+  </tr>
+  <tr>
+    <td>Library-specific</td>
+    <td>
+      We can use the library-specific (e.g., Express) <a href="https://expressjs.com/en/api.html#res" rel="nofollow" target="_blank">response object</a>, which can be injected using the <code>@Res()</code> decorator in the method handler signature (e.g., <code>findAll(@Res() response)</code>).  With this approach, you have the ability to use the native response handling methods exposed by that object.  For example, with Express, you can construct responses using code like <code>response.status(200).send()</code>.
+    </td>
+  </tr>
+</table>
+
+
+<table>
+  <tr>
+    <td>Estandard (recomendada)</td>
+    <td>
+      Con este método integrado, cuando un controlador de solicitudes devuelve un objeto o matriz JavaScript,<strong>automáticamente</strong>
+      ser serializado a JSON. Cuando devuelve un tipo primitivo de JavaScript (por ejemplo, <code>una cadena</code>, <code>numero</code>, <code>booleano</code>), sin embargo, Nest enviará solo el valor sin intentar serializarlo. Esto simplifica la gestión de respuestas: simplemente devuelve el valor y Nest se encarga del resto.
+      <br />
+      <br /> Además, la respuesta es .<strong>status code</strong> 200 siempre por default, excepto por perticiones
+      POST que usan 201. Podemos cambiar fácilmente este comportamiento agregando el decorador <code>@HttpCode(...)</code>
+       a nivel de controlador (para saber mas <a href='controllers#status-code'>Status codes</a>).
     </td>
   </tr>
   <tr>
