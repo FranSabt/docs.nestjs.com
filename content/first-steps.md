@@ -124,31 +124,39 @@ Nest apunta a ser un framework independiente de las plataformas. La independecia
 
 |                    |                                                                                                                                                                                                                                                                                                                                    |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `platform-express` | [Express](https://expressjs.com/) es un conocido framework web minimalista para node. Es una libreria probada en batalla, lista para producción con muchos recursos implementados por la comunidad. El paquete `@nestjs/platform-express` es usado por default. Many users are well served with Express, and need take no action to enable it. |
-| `platform-fastify` | [Fastify](https://www.fastify.io/) is a high performance and low overhead framework highly focused on providing maximum efficiency and speed. Read how to use it [here](/techniques/performance).                                                                                                                      
+| `platform-express` | [Express](https://expressjs.com/) es un conocido framework web minimalista para node. Es una libreria probada en batalla, lista para producción con muchos recursos implementados por la comunidad. El paquete `@nestjs/platform-express` es usado por default. Muchos usuarios están muy familiarizados con Express y no necesitan realizar ninguna acción para habilitarlo. |
+| `platform-fastify` | [Fastify](https://www.fastify.io/) es un framework de alto rendimiento y baja carga de trabao, enfocado en proporcionar la máxima eficiencia y velocidad. Lea sobre como usarlo [aqui](/techniques/performance).                                                                                                                      
 
-Whichever platform is used, it exposes its own application interface. These are seen respectively as `NestExpressApplication` and `NestFastifyApplication`.
+<!-- Whichever platform is used, it exposes its own application interface. These are seen respectively as `NestExpressApplication` and `NestFastifyApplication`. -->
+Cualquiera que sea la plataforma ha utilizadausar, expone su propia interfaz de aplicación. Estos se ven respectivamente como `NestExpressApplication` y `NestFastifyApplication`.
 
-When you pass a type to the `NestFactory.create()` method, as in the example below, the `app` object will have methods available exclusively for that specific platform. Note, however, you don't **need** to specify a type **unless** you actually want to access the underlying platform API.
+<!-- When you pass a type to the `NestFactory.create()` method, as in the example below, the `app` object will have methods available exclusively for that specific platform. Note, however, you don't **need** to specify a type **unless** you actually want to access the underlying platform API. -->
+Cuando pasa un tipo al método `NestFactory.create()`, como en el ejemplo de abajo, el objeto `app` tendrá métodos disponibles exclusivamente para esa plataforma específica. Sin embargo, tenga en cuenta que no **necesita** especificar un tipo **a menos que** realmente desee acceder a la API de la plataforma subyacente. 
 
 ```typescript
 const app = await NestFactory.create<NestExpressApplication>(AppModule);
 ```
 
-#### Running the application
+<!-- #### Running the application -->
+#### Corriendo la aplicacio
 
-Once the installation process is complete, you can run the following command at your OS command prompt to start the application listening for inbound HTTP requests:
+<!-- Once the installation process is complete, you can run the following command at your OS command prompt to start the application listening for inbound HTTP requests: -->
+Una vez completado el proceso de instalación, puede ejecutar el siguiente comando la consola para iniciar la aplicación y que escuche las solicitudes HTTP entrantes:
 
 ```bash
 $ npm run start
 ```
 
-This command starts the app with the HTTP server listening on the port defined in the `src/main.ts` file. Once the application is running, open your browser and navigate to `http://localhost:3000/`. You should see the `Hello World!` message.
+<!-- This command starts the app with the HTTP server listening on the port defined in the `src/main.ts` file. Once the application is running, open your browser and navigate to `http://localhost:3000/`. You should see the `Hello World!` message. -->
+Este comando inicia la aplicación con el servidor HTTP escuchando en el puerto definido en el archivo '`src/main.ts`. Una vez que la aplicación se esté ejecutando, abra su navegador y navegue hasta `http://localhost:3000/`. Debería ver el mensaje 'Hello World!'.
 
-To watch for changes in your files, you can run the following command to start the application:
+
+<!-- To watch for changes in your files, you can run the following command to start the application: -->
+Para observar los cambios en los archivos, puede ejecutar el siguiente comando para iniciar la aplicación:
 
 ```bash
 $ npm run start:dev
 ```
 
-This command will watch your files, automatically recompiling and reloading the server.
+<!-- This command will watch your files, automatically recompiling and reloading the server. -->
+Este comando estara pendiente de tus archivos, recompilara y recargara el servidor automaticamente.
