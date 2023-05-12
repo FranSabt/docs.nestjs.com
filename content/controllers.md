@@ -63,7 +63,7 @@ En nuestro ejemplo anterior, cuando se realiza una solicitud GET a este punto fi
 <!-- This method will return a 200 status code and the associated response, which in this case is just a string. Why does that happen? To explain, we'll first introduce the concept that Nest employs two **different** options for manipulating responses: -->
 Este método devolverá un status code 200 y la respuesta asociada, que en este caso es solo una cadena. ¿Por qué sucede eso? Para explicarlo, primero presentaremos el concepto de que Nest emplea dos opciones **diferentes** para manipular las respuestas:
 
-<table>
+<!-- <table>
   <tr>
     <td>Standard (recommended)</td>
     <td>
@@ -81,9 +81,7 @@ Este método devolverá un status code 200 y la respuesta asociada, que en este 
       We can use the library-specific (e.g., Express) <a href="https://expressjs.com/en/api.html#res" rel="nofollow" target="_blank">response object</a>, which can be injected using the <code>@Res()</code> decorator in the method handler signature (e.g., <code>findAll(@Res() response)</code>).  With this approach, you have the ability to use the native response handling methods exposed by that object.  For example, with Express, you can construct responses using code like <code>response.status(200).send()</code>.
     </td>
   </tr>
-</table>
-
-
+</table> -->
 <table>
   <tr>
     <td>Estandard (recomendada)</td>
@@ -97,20 +95,25 @@ Este método devolverá un status code 200 y la respuesta asociada, que en este 
     </td>
   </tr>
   <tr>
-    <td>Library-specific</td>
+    <td>Específico de la biblioteca</td>
     <td>
-      We can use the library-specific (e.g., Express) <a href="https://expressjs.com/en/api.html#res" rel="nofollow" target="_blank">response object</a>, which can be injected using the <code>@Res()</code> decorator in the method handler signature (e.g., <code>findAll(@Res() response)</code>).  With this approach, you have the ability to use the native response handling methods exposed by that object.  For example, with Express, you can construct responses using code like <code>response.status(200).send()</code>.
+      Podemos usar una biblioteca específica (por ejemplo, Express) <a href="https://expressjs.com/en/api.html#res" rel="nofollow" target="_blank">response object</a>, el cuál puede ser inyectado con el decorador <code>@Res()</code> en el controlador de métodos (por ejemplo, <code>findAll(@Res() response)</code>). Con este enfoque, se tiene la capacidad de utilizar los métodos de manejo de respuestas nativos expuestos por ese objeto. Por ejemplo, con Express, puede construir respuestas usando código como <code>response.status(200).send()</code>.
     </td>
   </tr>
 </table>
 
-> warning **Warning** Nest detects when the handler is using either `@Res()` or `@Next()`, indicating you have chosen the library-specific option. If both approaches are used at the same time, the Standard approach is **automatically disabled** for this single route and will no longer work as expected. To use both approaches at the same time (for example, by injecting the response object to only set cookies/headers but still leave the rest to the framework), you must set the `passthrough` option to `true` in the `@Res({{ '{' }} passthrough: true {{ '}' }})` decorator.
+<!-- > warning **Warning** Nest detects when the handler is using either `@Res()` or `@Next()`, indicating you have chosen the library-specific option. If both approaches are used at the same time, the Standard approach is **automatically disabled** for this single route and will no longer work as expected. To use both approaches at the same time (for example, by injecting the response object to only set cookies/headers but still leave the rest to the framework), you must set the `passthrough` option to `true` in the `@Res({{ '{' }} passthrough: true {{ '}' }})` decorator. -->
+
+> warning **Advertencia** Nest detecta cuando el controlador está usando `@Res()` o `@Next()`, lo que indica que ha elegido la opción específica de la libreria. Si se utilizan ambos enfoques al mismo tiempo, el enfoque estándar se **desactiva automáticamente** para esta ruta ya no funcionará como se espera. Para usar ambos enfoques al mismo tiempo (por ejemplo, al inyectar el objeto de respuesta para establecer solo cookies/encabezados pero dejar el resto al framework), debe establecer la opción `passthrough` en `true` en `@Res ({{ '{' }} passthrough: true {{ '}' }})` decorador.
 
 <app-banner-devtools></app-banner-devtools>
 
-#### Request object
+<!-- #### Request object -->
+#### EL objeto Request
 
-Handlers often need access to the client **request** details. Nest provides access to the [request object](https://expressjs.com/en/api.html#req) of the underlying platform (Express by default). We can access the request object by instructing Nest to inject it by adding the `@Req()` decorator to the handler's signature.
+<!-- Handlers often need access to the client **request** details. Nest provides access to the [request object](https://expressjs.com/en/api.html#req) of the underlying platform (Express by default). We can access the request object by instructing Nest to inject it by adding the `@Req()` decorator to the handler's signature. -->
+
+Los controladores a menudo necesitan acceder a los detalles de la **solicitud/request** del cliente. Nest proporciona acceso al [objeto de solicitud/request object](https://expressjs.com/en/api.html#req) de la plataforma subyacente (Express por default). Podemos acceder al objeto de solicitud indicándole a Nest que lo inyecte agregando el decorador `@Req()` a la firma del controlador.
 
 ```typescript
 @@filename(cats.controller)
@@ -137,9 +140,11 @@ export class CatsController {
 }
 ```
 
-> info **Hint** In order to take advantage of `express` typings (as in the `request: Request` parameter example above), install `@types/express` package.
+<!-- > info **Hint** In order to take advantage of `express` typings (as in the `request: Request` parameter example above), install `@types/express` package. -->
+> info **Sugerencia** Para aprovechar la tipificación `express` (como en el ejemplo anterior del parámetro `request: Request`), instale el paquete `@types/express`.
 
-The request object represents the HTTP request and has properties for the request query string, parameters, HTTP headers, and body (read more [here](https://expressjs.com/en/api.html#req)). In most cases, it's not necessary to grab these properties manually. We can use dedicated decorators instead, such as `@Body()` or `@Query()`, which are available out of the box. Below is a list of the provided decorators and the plain platform-specific objects they represent.
+<!-- The request object represents the HTTP request and has properties for the request query string, parameters, HTTP headers, and body (read more [here](https://expressjs.com/en/api.html#req)). In most cases, it's not necessary to grab these properties manually. We can use dedicated decorators instead, such as `@Body()` or `@Query()`, which are available out of the box. Below is a list of the provided decorators and the plain platform-specific objects they represent. -->
+El objeto de solicitud representa la solicitud HTTP, tiene propiedades para la cadena de consulta de la solicitud, los parámetros, los encabezados HTTP y el cuerpo (lea más [aquí](https://expressjs.com/en/api.html#req)). En la mayoría de los casos, no es necesario tomar estas propiedades manualmente. En su lugar, podemos usar decoradores dedicados, como `@Body()` o `@Query()`, que están disponibles desde el primer momento. A continuación se muestra una lista de los decoradores provistos y los objetos simples específicos de la plataforma que representan.
 
 <table>
   <tbody>
@@ -185,13 +190,20 @@ The request object represents the HTTP request and has properties for the reques
   </tbody>
 </table>
 
-<sup>\* </sup>For compatibility with typings across underlying HTTP platforms (e.g., Express and Fastify), Nest provides `@Res()` and `@Response()` decorators. `@Res()` is simply an alias for `@Response()`. Both directly expose the underlying native platform `response` object interface. When using them, you should also import the typings for the underlying library (e.g., `@types/express`) to take full advantage. Note that when you inject either `@Res()` or `@Response()` in a method handler, you put Nest into **Library-specific mode** for that handler, and you become responsible for managing the response. When doing so, you must issue some kind of response by making a call on the `response` object (e.g., `res.json(...)` or `res.send(...)`), or the HTTP server will hang.
+<!-- <sup>\* </sup>For compatibility with typings across underlying HTTP platforms (e.g., Express and Fastify), Nest provides `@Res()` and `@Response()` decorators. `@Res()` is simply an alias for `@Response()`. Both directly expose the underlying native platform `response` object interface. When using them, you should also import the typings for the underlying library (e.g., `@types/express`) to take full advantage. Note that when you inject either `@Res()` or `@Response()` in a method handler, you put Nest into **Library-specific mode** for that handler, and you become responsible for managing the response. When doing so, you must issue some kind of response by making a call on the `response` object (e.g., `res.json(...)` or `res.send(...)`), or the HTTP server will hang. -->
 
-> info **Hint** To learn how to create your own custom decorators, visit [this](/custom-decorators) chapter.
+<sup>\* </sup>Para la compatibilidad con los tipos en las plataformas HTTP subyacentes (por ejemplo, Express y Fastify), Nest proporciona decoradores `@Res()` y `@Response()`. `@Res()` es simplemente un alias para `@Response()`. Ambos exponen directamente la interfaz de objeto `respuesta` de la plataforma nativa subyacente. Al usarlos, también debe importar los tipos de la biblioteca subyacente (por ejemplo, `@types/express`) para aprovechar al máximo. Ten en cuenta que cuando inyectas `@Res()` o `@Response()` en un controlador de método, colocas a Nest en **modo específico de librería / Library-specific mode** para ese controlador y te vuelves responsable de administrar la respuesta. Al hacerlo, se debe emitir algún tipo de respuesta haciendo una llamada al objeto `response` (por ejemplo, `res.json(...)` o `res.send(...)`), o el servidor se colgará.
 
-#### Resources
+<!-- > info **Hint** To learn how to create your own custom decorators, visit [this](/custom-decorators) chapter. -->
+> información **Sugerencia** Para aprender a crear sus propios decoradores personalizados, visite [este](/decoradores-personalizados) capítulo .
 
-Earlier, we defined an endpoint to fetch the cats resource (**GET** route). We'll typically also want to provide an endpoint that creates new records. For this, let's create the **POST** handler:
+<!-- #### Resources -->
+#### Rescursos
+
+
+<!-- Earlier, we defined an endpoint to fetch the cats resource (**GET** route). We'll typically also want to provide an endpoint that creates new records. For this, let's create the **POST** handler: -->
+
+Anteriormente, definimos un endpoint para obtener el recurso cats (ruta **GET**). Por lo general, también querremos proporcionar un endpoint que cree nuevos registros. Para esto, vamos a crear el manejador **POST**:
 
 ```typescript
 @@filename(cats.controller)
@@ -226,11 +238,14 @@ export class CatsController {
 }
 ```
 
-It's that simple. Nest provides decorators for all of the standard HTTP methods: `@Get()`, `@Post()`, `@Put()`, `@Delete()`, `@Patch()`, `@Options()`, and `@Head()`. In addition, `@All()` defines an endpoint that handles all of them.
+<!-- It's that simple. Nest provides decorators for all of the standard HTTP methods: `@Get()`, `@Post()`, `@Put()`, `@Delete()`, `@Patch()`, `@Options()`, and `@Head()`. In addition, `@All()` defines an endpoint that handles all of them. -->
+Es así de simple. Nest proporciona decoradores para todos los métodos HTTP estándar: `@Get()`, `@Post()`, `@Put()`, `@Delete()`, `@Patch()`, `@Options( )` y `@Head()`. Además, `@All()` define un endpoint que los maneja a todos.
 
-#### Route wildcards
+<!-- #### Route wildcards -->
+### Comodines para las Rutas
 
-Pattern based routes are supported as well. For instance, the asterisk is used as a wildcard, and will match any combination of characters.
+<!-- Pattern based routes are supported as well. For instance, the asterisk is used as a wildcard, and will match any combination of characters. -->
+Las rutas basadas en patrones también son compatibles. Por ejemplo, el asterisco se usa como comodín y coincidirá con cualquier combinación de caracteres.
 
 ```typescript
 @Get('ab*cd')
@@ -239,11 +254,15 @@ findAll() {
 }
 ```
 
-The `'ab*cd'` route path will match `abcd`, `ab_cd`, `abecd`, and so on. The characters `?`, `+`, `*`, and `()` may be used in a route path, and are subsets of their regular expression counterparts. The hyphen ( `-`) and the dot (`.`) are interpreted literally by string-based paths.
+<!-- The `'ab*cd'` route path will match `abcd`, `ab_cd`, `abecd`, and so on. The characters `?`, `+`, `*`, and `()` may be used in a route path, and are subsets of their regular expression counterparts. The hyphen ( `-`) and the dot (`.`) are interpreted literally by string-based paths. -->
 
-#### Status code
+La ruta de la ruta `'ab*cd'` coincidirá con `abcd`, `ab_cd`, `abecd`, etc. Los caracteres `?`, `+`, `*` y `()` se pueden usar en una ruta de ruta y son subconjuntos de sus equivalentes de expresiones regulares. El guión (`-`) y el punto (`.`) se interpretan literalmente mediante rutas basadas en cadenas.
 
-As mentioned, the response **status code** is always **200** by default, except for POST requests which are **201**. We can easily change this behavior by adding the `@HttpCode(...)` decorator at a handler level.
+<!-- #### Status code -->
+#### Código de estado / Status code
+<!-- As mentioned, the response **status code** is always **200** by default, except for POST requests which are **201**. We can easily change this behavior by adding the `@HttpCode(...)` decorator at a handler level. -->
+
+Como se mencionó, el **status code** de respuesta siempre es **200** de manera predeterminada, excepto para las solicitudes POST que son **201**. Podemos cambiar fácilmente este comportamiento agregando el decorador `@HttpCode(...)` en un nivel de controlador.
 
 ```typescript
 @Post()
@@ -253,13 +272,16 @@ create() {
 }
 ```
 
-> info **Hint** Import `HttpCode` from the `@nestjs/common` package.
+<!-- > info **Hint** Import `HttpCode` from the `@nestjs/common` package. -->
+> info **Sugerencia** Importa `HttpCode` desde el paquete `@nestjs/common`.
 
 Often, your status code isn't static but depends on various factors. In that case, you can use a library-specific **response** (inject using `@Res()`) object (or, in case of an error, throw an exception).
 
-#### Headers
+<!-- #### Headers -->
+#### Encabezados / Headers
 
-To specify a custom response header, you can either use a `@Header()` decorator or a library-specific response object (and call `res.header()` directly).
+<!-- To specify a custom response header, you can either use a `@Header()` decorator or a library-specific response object (and call `res.header()` directly). -->
+Para especificar un encabezado de respuesta personalizado, puede usar un decorador `@Header()` o un objeto de respuesta específico de la libreria (y llamar a `res.header()` directamente).
 
 ```typescript
 @Post()
@@ -269,20 +291,26 @@ create() {
 }
 ```
 
-> info **Hint** Import `Header` from the `@nestjs/common` package.
+<!-- > info **Hint** Import `Header` from the `@nestjs/common` package. -->
+> info **Sugerencia** Importa `Header` desde el paquete `@nestjs/common`.
 
-#### Redirection
+<!-- #### Redirection -->
+#### Redireccionamiento
 
-To redirect a response to a specific URL, you can either use a `@Redirect()` decorator or a library-specific response object (and call `res.redirect()` directly).
 
-`@Redirect()` takes two arguments, `url` and `statusCode`, both are optional. The default value of `statusCode` is `302` (`Found`) if omitted.
+<!-- To redirect a response to a specific URL, you can either use a `@Redirect()` decorator or a library-specific response object (and call `res.redirect()` directly). -->
+Para redirigir una respuesta a una URL específica, puede usar un decorador `@Redirect()` o un objeto de respuesta específico de la biblioteca (y llamar a `res.redirect()` directamente).
+
+<!-- `@Redirect()` takes two arguments, `url` and `statusCode`, both are optional. The default value of `statusCode` is `302` (`Found`) if omitted. -->
+`@Redirect()` toma dos argumentos, `url` y `statusCode`, ambos son opcionales. El valor predeterminado de `statusCode` es `302` (`Found`) si se omite.
 
 ```typescript
 @Get()
 @Redirect('https://nestjs.com', 301)
 ```
 
-Sometimes you may want to determine the HTTP status code or the redirect URL dynamically. Do this by returning an object from the route handler method with the shape:
+<!-- Sometimes you may want to determine the HTTP status code or the redirect URL dynamically. Do this by returning an object from the route handler method with the shape: -->
+A veces, es posible que desee determinar el código de estado HTTP o la URL de redirección de forma dinámica. Haga esto devolviendo un objeto del método del controlador de ruta con la forma:
 
 ```json
 {
@@ -291,7 +319,8 @@ Sometimes you may want to determine the HTTP status code or the redirect URL dyn
 }
 ```
 
-Returned values will override any arguments passed to the `@Redirect()` decorator. For example:
+<!-- Returned values will override any arguments passed to the `@Redirect()` decorator. For example: -->
+Los valores devueltos anularán cualquier argumento pasado al decorador `@Redirect()`. Por ejemplo:
 
 ```typescript
 @Get('docs')
