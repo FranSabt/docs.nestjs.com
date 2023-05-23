@@ -332,11 +332,15 @@ getDocs(@Query('version') version) {
 }
 ```
 
-#### Route parameters
+<!-- #### Route parameters -->
+#### parámetrode de Rutas / Route parameters
 
-Routes with static paths won't work when you need to accept **dynamic data** as part of the request (e.g., `GET /cats/1` to get cat with id `1`). In order to define routes with parameters, we can add route parameter **tokens** in the path of the route to capture the dynamic value at that position in the request URL. The route parameter token in the `@Get()` decorator example below demonstrates this usage. Route parameters declared in this way can be accessed using the `@Param()` decorator, which should be added to the method signature.
+<!-- Routes with static paths won't work when you need to accept **dynamic data** as part of the request (e.g., `GET /cats/1` to get cat with id `1`). In order to define routes with parameters, we can add route parameter **tokens** in the path of the route to capture the dynamic value at that position in the request URL. The route parameter token in the `@Get()` decorator example below demonstrates this usage. Route parameters declared in this way can be accessed using the `@Param()` decorator, which should be added to the method signature. -->
 
-> info **Hint** Routes with parameters should be declared after any static paths. This prevents the parameterized paths from intercepting traffic destined for the static paths.
+Las rutas con rutas estáticas no funcionarán cuando necesite aceptar **datos dinámicos** como parte de la solicitud (por ejemplo, `GET /cats/1` para obtener 'cat' con id `1`). Para definir rutas con parámetros, podemos agregar **tokens** al parámetros de ruta  para capturar el valor dinámico en esa posición en la URL de solicitud. El token del parámetro de ruta en el ejemplo del decorador `@Get()` a continuación demuestra este uso. Se puede acceder a los parámetros de ruta declarados de esta manera utilizando el decorador `@Param()`, que debe agregarse a la firma del método.
+
+<!-- > info **Hint** Routes with parameters should be declared after any static paths. This prevents the parameterized paths from intercepting traffic destined for the static paths. -->
+> info **Sugerencia** Las rutas con parámetros deben declararse después de cualquier ruta estática. Esto evita que las rutas parametrizadas intercepten el tráfico destinado a las rutas estáticas.
 
 ```typescript
 @@filename()
@@ -354,7 +358,9 @@ findOne(params) {
 }
 ```
 
-`@Param()` is used to decorate a method parameter (`params` in the example above), and makes the **route** parameters available as properties of that decorated method parameter inside the body of the method. As seen in the code above, we can access the `id` parameter by referencing `params.id`. You can also pass in a particular parameter token to the decorator, and then reference the route parameter directly by name in the method body.
+<!-- `@Param()` is used to decorate a method parameter (`params` in the example above), and makes the **route** parameters available as properties of that decorated method parameter inside the body of the method. As seen in the code above, we can access the `id` parameter by referencing `params.id`. You can also pass in a particular parameter token to the decorator, and then reference the route parameter directly by name in the method body. -->
+
+`@Param()` se usa para decorar un parámetro de método (`params` en el ejemplo anterior), y hace que los parámetros de **ruta** estén disponibles como propiedades de ese parámetro de método decorado dentro del cuerpo del método. Como se ve en el código anterior, podemos acceder al parámetro `id` haciendo referencia a `params.id`. También puede pasar un token de parámetro particular al decorador y luego hacer referencia al parámetro de ruta directamente por nombre en el cuerpo del método.
 
 > info **Hint** Import `Param` from the `@nestjs/common` package.
 
@@ -372,9 +378,12 @@ findOne(id) {
 }
 ```
 
-#### Sub-Domain Routing
+<!-- #### Sub-Domain Routing -->
+#### Enrutamiento de subdominio / Sub-Domain Routing
 
-The `@Controller` decorator can take a `host` option to require that the HTTP host of the incoming requests matches some specific value.
+<!-- The `@Controller` decorator can take a `host` option to require that the HTTP host of the incoming requests matches some specific value. -->
+
+El decorador `@Controller` puede tomar una opción `host` para requerir que el host HTTP de las solicitudes entrantes coincida con algún valor específico.
 
 ```typescript
 @Controller({ host: 'admin.example.com' })
@@ -386,9 +395,13 @@ export class AdminController {
 }
 ```
 
-> **Warning** Since **Fastify** lacks support for nested routers, when using sub-domain routing, the (default) Express adapter should be used instead.
+<!-- > **Warning** Since **Fastify** lacks support for nested routers, when using sub-domain routing, the (default) Express adapter should be used instead. -->
+
+> **Warning** Dado que **Fastify** no es compatible con los enrutadores anidados, al usar el enrutamiento de subdominio, se debe usar el adaptador Express (predeterminado).
 
 Similar to a route `path`, the `hosts` option can use tokens to capture the dynamic value at that position in the host name. The host parameter token in the `@Controller()` decorator example below demonstrates this usage. Host parameters declared in this way can be accessed using the `@HostParam()` decorator, which should be added to the method signature.
+
+De manera similar a un `path` de ruta, la opción `hosts` puede usar tokens para capturar el valor dinámico en esa posición en el nombre del host. El token de parámetro de host en el ejemplo del decorador `@Controller()` a continuación demuestra este uso. Se puede acceder a los parámetros de host declarados de esta manera utilizando el decorador `@HostParam()`, que debe agregarse a la firma del método.
 
 ```typescript
 @Controller({ host: ':account.example.com' })
@@ -400,15 +413,22 @@ export class AccountController {
 }
 ```
 
-#### Scopes
+<!-- #### Scopes -->
+#### Ámbito - Alcance / Scope
 
-For people coming from different programming language backgrounds, it might be unexpected to learn that in Nest, almost everything is shared across incoming requests. We have a connection pool to the database, singleton services with global state, etc. Remember that Node.js doesn't follow the request/response Multi-Threaded Stateless Model in which every request is processed by a separate thread. Hence, using singleton instances is fully **safe** for our applications.
+<!-- For people coming from different programming language backgrounds, it might be unexpected to learn that in Nest, almost everything is shared across incoming requests. We have a connection pool to the database, singleton services with global state, etc. Remember that Node.js doesn't follow the request/response Multi-Threaded Stateless Model in which every request is processed by a separate thread. Hence, using singleton instances is fully **safe** for our applications. -->
 
-However, there are edge-cases when request-based lifetime of the controller may be the desired behavior, for instance per-request caching in GraphQL applications, request tracking or multi-tenancy. Learn how to control scopes [here](/fundamentals/injection-scopes).
+Para las personas que provienen de diferentes entornos de lenguaje de programación, puede ser inesperado saber que en Nest, casi todo se comparte entre las solicitudes entrantes. Tenemos un grupo de conexiones a la base de datos, servicios singleton con estado global, etc. Recuerde que Node.js no sigue el modelo sin estado de subprocesos múltiples de solicitud/respuesta en el que cada solicitud es procesada por un subproceso separado. Por lo tanto, usar instancias singleton es completamente **seguro** para nuestras aplicaciones.
 
-#### Asynchronicity
+<!-- However, there are edge-cases when request-based lifetime of the controller may be the desired behavior, for instance per-request caching in GraphQL applications, request tracking or multi-tenancy. Learn how to control scopes [here](/fundamentals/injection-scopes). -->
 
-We love modern JavaScript and we know that data extraction is mostly **asynchronous**. That's why Nest supports and works well with `async` functions.
+Sin embargo, hay casos extremos en los que la vida útil del controlador basada en solicitudes puede ser el comportamiento deseado, por ejemplo, almacenamiento en caché por solicitud en aplicaciones GraphQL, seguimiento de solicitudes o tenencia múltiple. Aprenda a controlar los alcances(scopes) [aquí](/fundamentals/injection-scopes).
+
+<!-- #### Asynchronicity -->
+#### Asincronía / Asynchronicity
+
+<!-- We love modern JavaScript and we know that data extraction is mostly **asynchronous**. That's why Nest supports and works well with `async` functions. -->
+Nos encanta el JavaScript moderno y sabemos que la extracción de datos es principalmente **asincrónica**. Es por eso que Nest admite y funciona bien con las funciones `asincrónicas`.
 
 > info **Hint** Learn more about `async / await` feature [here](https://kamilmysliwiec.com/typescript-2-1-introduction-async-await)
 
