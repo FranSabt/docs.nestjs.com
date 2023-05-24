@@ -430,9 +430,13 @@ Sin embargo, hay casos extremos en los que la vida útil del controlador basada 
 <!-- We love modern JavaScript and we know that data extraction is mostly **asynchronous**. That's why Nest supports and works well with `async` functions. -->
 Nos encanta el JavaScript moderno y sabemos que la extracción de datos es principalmente **asincrónica**. Es por eso que Nest admite y funciona bien con las funciones `asincrónicas`.
 
-> info **Hint** Learn more about `async / await` feature [here](https://kamilmysliwiec.com/typescript-2-1-introduction-async-await)
+<!-- > info **Hint** Learn more about `async / await` feature [here](https://kamilmysliwiec.com/typescript-2-1-introduction-async-await) -->
 
-Every async function has to return a `Promise`. This means that you can return a deferred value that Nest will be able to resolve by itself. Let's see an example of this:
+> info **Sugerencia** Obtenga más información sobre la función `async / await` [aquí](https://kamilmysliwiec.com/typescript-2-1-introduction-async-await)
+
+<!-- Every async function has to return a `Promise`. This means that you can return a deferred value that Nest will be able to resolve by itself. Let's see an example of this: -->
+
+Cada función asíncrona tiene que devolver una `Promesa`. Esto significa que puede devolver un valor diferido que Nest podrá resolver por sí mismo. Veamos un ejemplo de esto:
 
 ```typescript
 @@filename(cats.controller)
@@ -447,7 +451,9 @@ async findAll() {
 }
 ```
 
-The above code is fully valid. Furthermore, Nest route handlers are even more powerful by being able to return RxJS [observable streams](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html). Nest will automatically subscribe to the source underneath and take the last emitted value (once the stream is completed).
+<!-- The above code is fully valid. Furthermore, Nest route handlers are even more powerful by being able to return RxJS [observable streams](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html). Nest will automatically subscribe to the source underneath and take the last emitted value (once the stream is completed). -->
+
+El código anterior es totalmente válido. Además, los controladores de rutas de Nest son aún más potentes al poder devolver RxJS [observable streams](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html). Nest se suscribirá automáticamente a la fuente debajo y tomará el último valor emitido (una vez que se complete la transmisión).
 
 ```typescript
 @@filename(cats.controller)
@@ -462,15 +468,24 @@ findAll() {
 }
 ```
 
-Both of the above approaches work and you can use whatever fits your requirements.
+<!-- Both of the above approaches work and you can use whatever fits your requirements. -->
 
-#### Request payloads
+Ambos enfoques anteriores funcionan y puede usar lo que se ajuste a sus requisitos.
 
-Our previous example of the POST route handler didn't accept any client params. Let's fix this by adding the `@Body()` decorator here.
+<!-- #### Request payloads -->
 
-But first (if you use TypeScript), we need to determine the **DTO** (Data Transfer Object) schema. A DTO is an object that defines how the data will be sent over the network. We could determine the DTO schema by using **TypeScript** interfaces, or by simple classes. Interestingly, we recommend using **classes** here. Why? Classes are part of the JavaScript ES6 standard, and therefore they are preserved as real entities in the compiled JavaScript. On the other hand, since TypeScript interfaces are removed during the transpilation, Nest can't refer to them at runtime. This is important because features such as **Pipes** enable additional possibilities when they have access to the metatype of the variable at runtime.
+#### Solicitar cargas útiles / Request payloads
 
-Let's create the `CreateCatDto` class:
+<!-- Our previous example of the POST route handler didn't accept any client params. Let's fix this by adding the `@Body()` decorator here. -->
+
+Nuestro ejemplo anterior del controlador de ruta POST no aceptaba ningún parámetro de cliente. Arreglemos esto agregando el decorador `@Body()` aquí.
+
+<!-- But first (if you use TypeScript), we need to determine the **DTO** (Data Transfer Object) schema. A DTO is an object that defines how the data will be sent over the network. We could determine the DTO schema by using **TypeScript** interfaces, or by simple classes. Interestingly, we recommend using **classes** here. Why? Classes are part of the JavaScript ES6 standard, and therefore they are preserved as real entities in the compiled JavaScript. On the other hand, since TypeScript interfaces are removed during the transpilation, Nest can't refer to them at runtime. This is important because features such as **Pipes** enable additional possibilities when they have access to the metatype of the variable at runtime. -->
+
+Pero primero (si usa TypeScript), debemos determinar el esquema **DTO** (Objeto de transferencia de datos / Data Transfer Object). Un DTO es un objeto que define cómo se enviarán los datos a través de la red. Podríamos determinar el esquema DTO mediante el uso de interfaces **TypeScript** o mediante clases simples. Curiosamente, recomendamos usar **clases** aquí. ¿Por qué? Las clases son parte del estándar JavaScript ES6 y, por lo tanto, se conservan como entidades reales en el JavaScript compilado. Por otro lado, dado que las interfaces de TypeScript se eliminan durante la transpilación, Nest no puede consultarlas en tiempo de ejecución. Esto es importante porque funciones como **Pipes** permiten posibilidades adicionales cuando tienen acceso al metatipo de la variable en tiempo de ejecución.
+
+<!-- Let's create the `CreateCatDto` class: -->
+Vamos a crear la clase `CreateCatDto`:
 
 ```typescript
 @@filename(create-cat.dto)
@@ -481,7 +496,9 @@ export class CreateCatDto {
 }
 ```
 
-It has only three basic properties. Thereafter we can use the newly created DTO inside the `CatsController`:
+<!-- It has only three basic properties. Thereafter we can use the newly created DTO inside the `CatsController`: -->
+
+Tiene sólo tres propiedades básicas. A partir de entonces, podemos usar el DTO recién creado dentro de `CatsController`:
 
 ```typescript
 @@filename(cats.controller)
@@ -497,15 +514,24 @@ async create(createCatDto) {
 }
 ```
 
-> info **Hint** Our `ValidationPipe` can filter out properties that should not be received by the method handler. In this case, we can whitelist the acceptable properties, and any property not included in the whitelist is automatically stripped from the resulting object. In the `CreateCatDto` example, our whitelist is the `name`, `age`, and `breed` properties. Learn more [here](https://docs.nestjs.com/techniques/validation#stripping-properties).
+<!-- > info **Hint** Our `ValidationPipe` can filter out properties that should not be received by the method handler. In this case, we can whitelist the acceptable properties, and any property not included in the whitelist is automatically stripped from the resulting object. In the `CreateCatDto` example, our whitelist is the `name`, `age`, and `breed` properties. Learn more [here](https://docs.nestjs.com/techniques/validation#stripping-properties). -->
 
-#### Handling errors
+> info **Sugerencia** Nuestro `ValidationPipe` puede filtrar propiedades que no deberían ser recibidas por el controlador de métodos. En este caso, podemos incluir en la lista blanca las propiedades aceptables, y cualquier propiedad que no esté incluida en la lista blanca se eliminará automáticamente del objeto resultante. En el ejemplo `CreateCatDto`, nuestra lista blanca son las propiedades `name`, `age` y `breed`. Obtenga más información [aquí](https://docs.nestjs.com/techniques/validation#stripping-properties).
 
-There's a separate chapter about handling errors (i.e., working with exceptions) [here](/exception-filters).
+<!-- #### Handling errors -->
+#### Manejo de Errores / Handling errors
 
-#### Full resource sample
+<!-- There's a separate chapter about handling errors (i.e., working with exceptions) [here](/exception-filters). -->
 
-Below is an example that makes use of several of the available decorators to create a basic controller. This controller exposes a couple of methods to access and manipulate internal data.
+Hay un capítulo separado sobre el manejo de errores (es decir, trabajar con excepciones) [aquí](/exception-filters).
+
+<!-- #### Full resource sample -->
+
+#### Muestra completa de recursos / Full resource sample
+
+<!-- Below is an example that makes use of several of the available decorators to create a basic controller. This controller exposes a couple of methods to access and manipulate internal data. -->
+
+A continuación se muestra un ejemplo que utiliza varios de los decoradores disponibles para crear un controlador básico. Este controlador expone un par de métodos para acceder y manipular datos internos.
 
 ```typescript
 @@filename(cats.controller)
@@ -577,13 +603,20 @@ export class CatsController {
 }
 ```
 
-> info **Hint** Nest CLI provides a generator (schematic) that automatically generates **all the boilerplate code** to help us avoid doing all of this, and make the developer experience much simpler. Read more about this feature [here](/recipes/crud-generator).
+<!-- > info **Hint** Nest CLI provides a generator (schematic) that automatically generates **all the boilerplate code** to help us avoid doing all of this, and make the developer experience much simpler. Read more about this feature [here](/recipes/crud-generator). -->
 
-#### Getting up and running
+> info **Sugerencia** La CLI de Nest proporciona un generador (esquema) que genera automáticamente **todo el boilerplate** para ayudarnos a evitar hacer todo esto y hacer que la experiencia del desarrollador sea mucho más simple. Lea más sobre esta función [aquí](/recipes/crud-generator).
 
-With the above controller fully defined, Nest still doesn't know that `CatsController` exists and as a result won't create an instance of this class.
+<!-- #### Getting up and running -->
 
-Controllers always belong to a module, which is why we include the `controllers` array within the `@Module()` decorator. Since we haven't yet defined any other modules except the root `AppModule`, we'll use that to introduce the `CatsController`:
+#### Preparar y correr / Getting up and running
+
+<!-- With the above controller fully defined, Nest still doesn't know that `CatsController` exists and as a result won't create an instance of this class. -->
+Con el controlador anterior completamente definido, Nest todavía no sabe que existe `CatsController` y, como resultado, no creará una instancia de esta clase.
+
+<!-- Controllers always belong to a module, which is why we include the `controllers` array within the `@Module()` decorator. Since we haven't yet defined any other modules except the root `AppModule`, we'll use that to introduce the `CatsController`: -->
+
+Los controladores siempre pertenecen a un módulo, por lo que incluimos en el array `controllers` dentro del decorador `@Module()`. Dado que aún no hemos definido ningún otro módulo excepto el `AppModule` raíz, lo usaremos para presentar el 'CatsController':
 
 ```typescript
 @@filename(app.module)
@@ -600,9 +633,13 @@ We attached the metadata to the module class using the `@Module()` decorator, an
 
 <app-banner-shop></app-banner-shop>
 
-#### Library-specific approach
+<!-- #### Library-specific approach -->
 
-So far we've discussed the Nest standard way of manipulating responses. The second way of manipulating the response is to use a library-specific [response object](https://expressjs.com/en/api.html#res). In order to inject a particular response object, we need to use the `@Res()` decorator. To show the differences, let's rewrite the `CatsController` to the following:
+#### Enfoque específico de la librería / Library-specific approach
+
+<!-- So far we've discussed the Nest standard way of manipulating responses. The second way of manipulating the response is to use a library-specific [response object](https://expressjs.com/en/api.html#res). In order to inject a particular response object, we need to use the `@Res()` decorator. To show the differences, let's rewrite the `CatsController` to the following: -->
+
+Hasta ahora hemos discutido la forma estándar de Nest de manejar las respuestas. La segunda forma de manejar las respuestas es usar un [response object](https://expressjs.com/en/api.html#res) específico de la biblioteca de esta librería. Para inyectar un objeto de respuesta particular, necesitamos usar el decorador `@Res()`. Para mostrar las diferencias, reescribamos `CatsController` de la siguiente manera:
 
 ```typescript
 @@filename()
@@ -640,9 +677,13 @@ export class CatsController {
 }
 ```
 
-Though this approach works, and does in fact allow for more flexibility in some ways by providing full control of the response object (headers manipulation, library-specific features, and so on), it should be used with care. In general, the approach is much less clear and does have some disadvantages. The main disadvantage is that your code becomes platform-dependent (as underlying libraries may have different APIs on the response object), and harder to test (you'll have to mock the response object, etc.).
+<!-- Though this approach works, and does in fact allow for more flexibility in some ways by providing full control of the response object (headers manipulation, library-specific features, and so on), it should be used with care. In general, the approach is much less clear and does have some disadvantages. The main disadvantage is that your code becomes platform-dependent (as underlying libraries may have different APIs on the response object), and harder to test (you'll have to mock the response object, etc.). -->
 
-Also, in the example above, you lose compatibility with Nest features that depend on Nest standard response handling, such as Interceptors and `@HttpCode()` / `@Header()` decorators. To fix this, you can set the `passthrough` option to `true`, as follows:
+Aunque este enfoque funciona y, de hecho, permite una mayor flexibilidad de alguna manera al proporcionar un control total del objeto de respuesta (manipulación de encabezados, características específicas de la biblioteca, etc.), debe usarse con cuidado. En general, el enfoque es mucho menos claro y tiene algunas desventajas. La principal desventaja es que su código se vuelve dependiente de la plataforma (ya que las bibliotecas subyacentes pueden tener diferentes API en el objeto de respuesta) y más difícil de probar (tendrá que simular el objeto de respuesta, etc.).
+
+<!-- Also, in the example above, you lose compatibility with Nest features that depend on Nest standard response handling, such as Interceptors and `@HttpCode()` / `@Header()` decorators. To fix this, you can set the `passthrough` option to `true`, as follows: -->
+
+Además, en el ejemplo anterior, pierde la compatibilidad con las funciones de Nest que dependen del manejo de respuesta estándar de Nest, como Interceptors y decoradores `@HttpCode()` / `@Header()`. Para solucionar esto, puede establecer la opción `passthrough` en `true`, de la siguiente manera:
 
 ```typescript
 @@filename()
@@ -660,4 +701,6 @@ findAll(res) {
 }
 ```
 
-Now you can interact with the native response object (for example, set cookies or headers depending on certain conditions), but leave the rest to the framework.
+<!-- Now you can interact with the native response object (for example, set cookies or headers depending on certain conditions), but leave the rest to the framework. -->
+
+Ahora puede interactuar con el objeto de respuesta nativo (por ejemplo, establecer cookies o encabezados según ciertas condiciones), pero deje el resto en manos del marco.
